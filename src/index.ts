@@ -110,7 +110,7 @@ server.registerTool(
   {
     title: "Search Vehicles",
     description:
-      "Search the Nuke database (758K+ vehicle profiles). Accepts any input: " +
+      "Search the Nuke database (796K+ vehicle profiles). Accepts any input: " +
       "VIN (17 chars), listing URL, year, make/model text, or free-text query. " +
       "Returns matching vehicles with thumbnails and relevance scores.",
     inputSchema: {

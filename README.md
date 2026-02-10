@@ -1,6 +1,6 @@
 # Nuke MCP Server
 
-Vehicle intelligence for AI agents. Search 758K+ vehicle profiles, extract listings, get AI valuations, identify cars from photos.
+Vehicle intelligence for AI agents. Search 796K+ vehicle profiles, extract listings, get AI valuations, identify cars from photos.
 
 ```
 npx -y @sss97133/nuke-mcp-server
@@ -8,7 +8,7 @@ npx -y @sss97133/nuke-mcp-server
 
 ## What it does
 
-Nuke is a vehicle data platform with 758K profiles, 627K observations, and 181 extraction tools aggregating data from Bring a Trailer, Cars & Bids, RM Sotheby's, Mecum, eBay Motors, Craigslist, forums, and more.
+Nuke is a vehicle data platform with 796K profiles, 629K observations, and 320+ edge functions aggregating data from Bring a Trailer, Cars & Bids, RM Sotheby's, Mecum, eBay Motors, Craigslist, forums, and more.
 
 This MCP server gives any AI agent access to that data through 6 tools:
 
@@ -159,13 +159,11 @@ Output: { year: 1973, make: "Porsche", model: "911", trim: "Carrera RS",
 
 ## Data
 
-- **758,000+** vehicle profiles
-- **627,000+** observations with full provenance
-- **491,000+** resolved identities across platforms
-- **364,000+** auction comments analyzed
-- **1,000,000+** images indexed
-- **2,295** businesses identified
-- **132,000+** Bring a Trailer listings
+- **796,000+** vehicle profiles
+- **629,000+** observations with full provenance
+- **28M+** images indexed
+- **10.9M+** auction comments analyzed
+- **2,553** businesses identified
 
 All data points have provenance tracking and confidence scores.
 
