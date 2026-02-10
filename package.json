@@ -1,8 +1,16 @@
 {
-  "name": "@anthropic-skylar/nuke-mcp-server",
+  "name": "@sss97133/nuke-mcp-server",
   "version": "0.1.0",
   "description": "MCP server for Nuke vehicle data platform — 758K vehicle profiles, AI valuations, image identification, listing extraction",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sss97133/nuke-mcp-server.git"
+  },
+  "homepage": "https://github.com/sss97133/nuke-mcp-server#readme",
+  "bugs": {
+    "url": "https://github.com/sss97133/nuke-mcp-server/issues"
+  },
   "bin": {
     "nuke-mcp": "./build/index.js"
   },

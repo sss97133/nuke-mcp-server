@@ -3,7 +3,7 @@
 Vehicle intelligence for AI agents. Search 758K+ vehicle profiles, extract listings, get AI valuations, identify cars from photos.
 
 ```
-npx -y @anthropic-skylar/nuke-mcp-server
+npx -y @sss97133/nuke-mcp-server
 ```
 
 ## What it does
@@ -38,7 +38,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
   "mcpServers": {
     "nuke": {
       "command": "npx",
-      "args": ["-y", "@anthropic-skylar/nuke-mcp-server"],
+      "args": ["-y", "@sss97133/nuke-mcp-server"],
       "env": {
         "NUKE_API_KEY": "nk_live_your_key_here"
       }
@@ -56,7 +56,7 @@ Add to your project's `.mcp.json`:
   "mcpServers": {
     "nuke": {
       "command": "npx",
-      "args": ["-y", "@anthropic-skylar/nuke-mcp-server"],
+      "args": ["-y", "@sss97133/nuke-mcp-server"],
       "env": {
         "NUKE_API_KEY": "nk_live_your_key_here"
       }
@@ -73,7 +73,7 @@ Add to Cursor Settings → MCP Servers:
 {
   "nuke": {
     "command": "npx",
-    "args": ["-y", "@anthropic-skylar/nuke-mcp-server"],
+    "args": ["-y", "@sss97133/nuke-mcp-server"],
     "env": {
       "NUKE_API_KEY": "nk_live_your_key_here"
     }
