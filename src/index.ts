@@ -121,9 +121,11 @@ server.registerTool(
         ),
       limit: z
         .number()
+        .min(1)
+        .max(100)
         .optional()
         .default(10)
-        .describe("Max results to return (default 10)"),
+        .describe("Max results to return (1-100, default 10)"),
     },
   },
   async ({ query, limit }) => {
@@ -265,8 +267,8 @@ server.registerTool(
       "List vehicles from the Nuke database. Returns paginated results. " +
       "Use mine=true to list only your vehicles.",
     inputSchema: {
-      page: z.number().optional().default(1).describe("Page number"),
-      limit: z.number().optional().default(20).describe("Results per page (max 100)"),
+      page: z.number().min(1).optional().default(1).describe("Page number (starts at 1)"),
+      limit: z.number().min(1).max(100).optional().default(20).describe("Results per page (1-100, default 20)"),
       mine: z
         .boolean()
         .optional()
