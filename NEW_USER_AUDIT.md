@@ -37,16 +37,16 @@ The package `@sss97133/nuke-mcp-server` is not published to npm. The entire READ
 
 **What a new user thinks:** "Dead on arrival. Is this abandoned?"
 
-### nuke.run Website
+### nuke.ag Website
 
-The README says "Sign up at nuke.run and generate an API key in Settings." The site resolves (170.75.175.173) but returns an empty response. There is no way for a new user to get an API key.
+The README says "Sign up at nuke.ag and generate an API key in Settings." The site resolves (170.75.175.173) but returns an empty response. There is no way for a new user to get an API key.
 
 **What a new user thinks:** "The signup link is broken. I literally cannot use this."
 
 ### No API Key Error Message (Grade: B+)
 
 ```
-ERROR: NUKE_API_KEY is required. Get one at https://nuke.run/settings/api
+ERROR: NUKE_API_KEY is required. Get one at https://nuke.ag/settings/api
 ```
 
 Clear message with a URL. Good. But the URL leads nowhere (see above).
@@ -355,7 +355,7 @@ When a valuation is cached, the tool returns `{"message": "All vehicles already 
 1. **Publish the npm package.** Everything in the README depends on it.
 2. **Fix get_vehicle and list_vehicles auth.** These tools are 100% broken. Either make `api-v1-vehicles` accept the service role key or create a different endpoint for MCP access.
 3. **Fix the extraction hallucination.** When the AI cannot extract data from a URL, return `{"success": false, "error": "No vehicle data found"}` instead of fabricated data with 0.95 confidence.
-4. **Make nuke.run work** or change the API key instructions to something that actually works.
+4. **Make nuke.ag work** or change the API key instructions to something that actually works.
 
 ### P1 -- Credibility Issues (Fix before telling anyone about it)
 

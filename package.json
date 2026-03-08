@@ -1,7 +1,11 @@
 {
   "name": "@sss97133/nuke-mcp-server",
-  "version": "0.1.0",
-  "description": "MCP server for Nuke vehicle data platform — 796K vehicle profiles, AI valuations, image identification, listing extraction",
+  "version": "0.2.0",
+  "description": "MCP server for Nuke vehicle data platform — 1.29M vehicle profiles, AI valuations, $0/image vision analysis, comparable sales, listing extraction",
+  "author": "Nuke <skylar@nuke.ag>",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "type": "module",
   "repository": {
     "type": "git",

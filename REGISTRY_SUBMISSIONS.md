@@ -25,10 +25,10 @@ mcp-publisher publish       # Submit
 
 ## 3. Glama.ai
 **URL**: glama.ai/mcp
-**Process**: Publish `/.well-known/glama.json` on nuke.run:
+**Process**: Publish `/.well-known/glama.json` on nuke.ag:
 ```json
 {
-  "maintainer_email": "skylar@nuke.run"
+  "maintainer_email": "skylar@nuke.ag"
 }
 ```
 **Scale**: 6,150+ servers, largest directory
