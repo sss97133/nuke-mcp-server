@@ -141,7 +141,7 @@ async function callAPI(
 
 const server = new McpServer({
   name: "nuke-vehicle-data",
-  version: "0.2.0",
+  version: "0.3.0",
 });
 
 // ── Tool 1: Search (universal-search) ─────────────────────────────────────
@@ -537,7 +537,7 @@ const TOOL_NAMES = [
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Nuke MCP Server v0.2.0 running on stdio");
+  console.error("Nuke MCP Server v0.3.0 running on stdio");
   console.error(`API: ${NUKE_API_URL}`);
   console.error(`Auth: ${NUKE_SERVICE_ROLE_KEY ? "service-role" : "api-key"}`);
   console.error(`Tools (${TOOL_NAMES.length}): ${TOOL_NAMES.join(", ")}`);
