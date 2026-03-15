@@ -10,7 +10,7 @@ npx -y @sss97133/nuke-mcp-server
 
 Nuke is a vehicle data platform with 1.29M profiles, 1.36M observations, 11.7M auction comments, and 35M images aggregated from Bring a Trailer, Cars & Bids, RM Sotheby's, Mecum, Barrett-Jackson, eBay Motors, Craigslist, forums, and 100+ more sources.
 
-This MCP server gives any AI agent access to that data through 10 tools:
+This MCP server gives any AI agent access to that data through 11 tools:
 
 | Tool | Description |
 |------|-------------|
@@ -24,6 +24,7 @@ This MCP server gives any AI agent access to that data through 10 tools:
 | `get_comps` | Comparable auction sales with price statistics |
 | `get_vehicle` | Fetch a vehicle profile by ID |
 | `list_vehicles` | List vehicles with filters (make, model, year, price range) |
+| `ingest_marketplace_listing` | Submit pre-extracted FB Marketplace data directly to Nuke |
 
 ## Setup
 
@@ -200,6 +201,21 @@ Output: { data: [...], summary: { count: 10, avg_price: 142000, median_price: 13
 ```
 
 Data from: Bring a Trailer, Mecum, Barrett-Jackson, RM Sotheby's, Cars & Bids, Gooding, Bonhams, PCarMarket, eBay Motors, and more.
+
+### ingest_marketplace_listing
+
+Submit pre-extracted Facebook Marketplace vehicle data directly to Nuke. Use this when you've already scraped data from a FB Marketplace listing page (e.g., via DOM extraction in a browser). Skips re-scraping — data goes straight to the database. Idempotent on `facebook_id`.
+
+```
+Input:  { facebook_id: "1234567890", title: "1984 Chevrolet K10",
+          price: 18500, parsed_year: 1984, parsed_make: "Chevrolet",
+          parsed_model: "K10", location: "Austin, TX",
+          mileage: 87000, all_images: ["https://..."] }
+Output: { success: true, listing_id: "uuid", vehicle_id: "uuid" | null,
+          is_new: true, submission_count: 1, linked_via: "vin" | "ymm_match" | null }
+```
+
+Automatic vehicle linking: if the description contains a VIN matching an existing vehicle, `vehicle_id` is set directly. If year/make/model + state match 1-3 existing vehicles, `suggested_vehicle_id` is set for human review.
 
 ### get_vehicle / list_vehicles
 

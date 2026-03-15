@@ -17,6 +17,7 @@
  *   get_comps               - Comparable vehicle sales by make/model or vehicle_id
  *   get_vehicle             - Fetch a vehicle profile by ID
  *   list_vehicles           - List vehicles (yours or public)
+ *   ingest_marketplace_listing - Direct FB Marketplace listing ingest (no re-scrape)
  */
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -524,6 +525,71 @@ server.registerTool(
   }
 );
 
+// ── Tool 11: Ingest Marketplace Listing ───────────────────────────────────
+
+server.registerTool(
+  "ingest_marketplace_listing",
+  {
+    title: "Ingest Marketplace Listing",
+    description:
+      "Submit pre-extracted Facebook Marketplace listing data directly to Nuke. " +
+      "Use this when you have already extracted vehicle data from a FB Marketplace page " +
+      "(e.g. via DOM scraping in a browser). Skips re-scraping — data goes straight to DB. " +
+      "Returns listing_id, vehicle_id, and whether the listing is new or updated.",
+    inputSchema: {
+      facebook_id: z.string()
+        .describe("Facebook listing ID (numeric string from URL)"),
+      url: z.string().optional()
+        .describe("Full FB Marketplace URL"),
+      title: z.string().optional()
+        .describe("Listing title"),
+      price: z.number().optional()
+        .describe("Asking price in USD"),
+      description: z.string().optional()
+        .describe("Listing description text"),
+      location: z.string().optional()
+        .describe("Location as 'City, ST'"),
+      parsed_year: z.number().optional()
+        .describe("Vehicle year"),
+      parsed_make: z.string().optional()
+        .describe("Vehicle make (e.g. 'Chevrolet')"),
+      parsed_model: z.string().optional()
+        .describe("Vehicle model (e.g. 'Caprice Classic')"),
+      mileage: z.number().optional()
+        .describe("Mileage in miles"),
+      exterior_color: z.string().optional()
+        .describe("Exterior color"),
+      interior_color: z.string().optional()
+        .describe("Interior color"),
+      transmission: z.string().optional()
+        .describe("Transmission type"),
+      fuel_type: z.string().optional()
+        .describe("Fuel type"),
+      image_url: z.string().optional()
+        .describe("Primary image URL"),
+      all_images: z.array(z.string()).optional()
+        .describe("All image URLs"),
+      seller_name: z.string().optional()
+        .describe("Seller name"),
+      contact_info: z.record(z.unknown()).optional()
+        .describe("Contact info (phone, etc.)"),
+    },
+  },
+  async (params) => {
+    const data = await callFunction("extract-facebook-marketplace", {
+      mode: "direct",
+      ...params,
+      agent_context: {
+        agent_id: "nuke-mcp-server",
+        session_type: "mcp_tool",
+      },
+    });
+    return {
+      content: [{ type: "text" as const, text: JSON.stringify(data, null, 2) }],
+    };
+  }
+);
+
 // ---------------------------------------------------------------------------
 // Start
 // ---------------------------------------------------------------------------
@@ -532,12 +598,13 @@ const TOOL_NAMES = [
   "search_vehicles", "search_vehicles_api", "extract_listing",
   "get_vehicle_valuation", "get_valuation", "identify_vehicle_image",
   "analyze_image", "get_comps", "get_vehicle", "list_vehicles",
+  "ingest_marketplace_listing",
 ];
 
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Nuke MCP Server v0.3.0 running on stdio");
+  console.error("Nuke MCP Server v0.4.0 running on stdio");
   console.error(`API: ${NUKE_API_URL}`);
   console.error(`Auth: ${NUKE_SERVICE_ROLE_KEY ? "service-role" : "api-key"}`);
   console.error(`Tools (${TOOL_NAMES.length}): ${TOOL_NAMES.join(", ")}`);
